@@ -53,7 +53,8 @@
   // }
 
   function doDropboxLogin() {
-    const authUrl = dbx.getAuthenticationUrl('http://localhost:5000/');
+    const {origin, pathname} = window.location;
+    const authUrl = dbx.getAuthenticationUrl(origin + pathname);
     window.location.replace(authUrl);
   }
 
@@ -86,7 +87,7 @@
 
   function render(text) {
     if (text == null) return;
-    
+
     // noop if text already matches
     if (text === lastTextContents) return console.log('skipping render, text already matches');
 
