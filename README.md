@@ -4,8 +4,9 @@
 
 ## Reference
 
-* Dropbox API -- http://dropbox.github.io/dropbox-sdk-js/global.html
-* web app manifest -- https://developers.google.com/web/fundamentals/web-app-manifest
+* Dropbox Auth config for this app -- https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
+* Dropbox API Docs -- http://dropbox.github.io/dropbox-sdk-js/global.html
+* Web app manifest Info -- https://developers.google.com/web/fundamentals/web-app-manifest
 
 ## Developing
 

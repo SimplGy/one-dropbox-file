@@ -85,8 +85,16 @@
 
   // We got a downloaded file with blob from Dropbox, so use it
   async function gotOneFile(file = {}) {
-    const text = await file.fileBlob.text();
-    render(text);
+    window.file = file; // for debugging
+
+    // const text = await file.fileBlob.text(); // Don't use: basically chrome only right now (2020)
+
+    const fr = new FileReader();
+    fr.addEventListener('load', () => {
+      const text = fr.result;
+      render(text);
+    });
+    fr.readAsText(file.fileBlob)
   }
 
   function render(text) {
