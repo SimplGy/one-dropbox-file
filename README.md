@@ -5,7 +5,7 @@
 ## Reference
 
 * Dropbox API -- http://dropbox.github.io/dropbox-sdk-js/global.html
-* 
+* web app manifest -- https://developers.google.com/web/fundamentals/web-app-manifest
 
 ## Developing
 

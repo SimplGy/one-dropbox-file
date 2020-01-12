@@ -1,0 +1,9 @@
+{
+  "short_name": "One File",
+  "name": "One Dropbox File",
+  "icons": [
+  ],
+  "background_color": "#ddd",
+  "display": "minimal-ui",
+  "theme_color": "#333"
+}
