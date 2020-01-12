@@ -2,6 +2,16 @@
   "short_name": "One File",
   "name": "One Dropbox File",
   "icons": [
+    {
+      "src": "/gfx/one-file-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/gfx/one-file-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
   ],
   "background_color": "#ddd",
   "display": "minimal-ui",
