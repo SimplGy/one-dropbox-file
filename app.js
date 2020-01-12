@@ -35,7 +35,7 @@
     window.dbx = dbx; // for debugging
     
     if (accessToken == null) {
-      doDropboxLogin();
+      requireDropboxLogin();
       return;
     } else {
       localToken.set(accessToken);
@@ -52,10 +52,14 @@
   //   return false;
   // }
 
-  function doDropboxLogin() {
+  function requireDropboxLogin() {
     const {origin, pathname} = window.location;
     const authUrl = dbx.getAuthenticationUrl(origin + pathname);
-    window.location.replace(authUrl);
+    const a = document.createElement('a');
+    a.setAttribute('href', authUrl);
+    a.className = 'btnLogin';
+    a.innerText = 'Log In with Dropbox';
+    $text.replaceWith(a);
   }
 
   // get useful kvps from window.location.hash
