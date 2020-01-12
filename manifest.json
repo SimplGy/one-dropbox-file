@@ -1,6 +1,8 @@
 {
   "short_name": "One File",
   "name": "One Dropbox File",
+  "start_url": "/one-dropbox-file/",
+  "scope": "/one-dropbox-file/",
   "icons": [
     {
       "src": "/gfx/one-file-192.png",
