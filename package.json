@@ -1,0 +1,12 @@
+{
+  "name": "one-dropbox-file",
+  "version": "1.0.0",
+  "description": "An app optimized for quick start and a one single use case: show you a dropbox file at the last place you scrolled to.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Miller @simplgy",
+  "license": "UNLICENSED",
+  "dependencies": {}
+}
