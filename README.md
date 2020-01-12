@@ -16,5 +16,5 @@
 * handle the empty state (eg: "add a text file like `Dropbox/OneTextFile/foo.txt` to see something here")
 * support error and other messages that show up but don't replace the text
 * detect "expired access token" and retrigger auth flow
-* store token in localstorage?
+- [x] store token in localstorage?
 * lightweight mobile support (eg: manifest and icon)

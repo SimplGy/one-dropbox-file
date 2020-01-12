@@ -2,7 +2,13 @@
 
   // This is the id for the OneFile application, not a user
   const clientId = '0j861nb371f5ops'; // https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
-  
+  const ls = (key) => ({
+    get: () => localStorage.getItem(key),
+    set: (val) => localStorage.setItem(key, val),
+  })
+  const localToken = ls('dropboxAccessToken');
+  const localText = ls('lastTextContents');
+
   let dbx;
   let lastScrollPosition;
   let lastTextContents;
@@ -19,8 +25,7 @@
 
     // Do we have an access token in url or localstorage?  
     const params = parseLocation();
-    const accessToken = params.access_token;
-    
+    const accessToken = params.access_token || localToken.get();
     
     // From https://github.com/dropbox/dropbox-sdk-js
     // https://dropbox.github.io/dropbox-sdk-js/tutorial-Authentication.html
@@ -32,10 +37,12 @@
     if (accessToken == null) {
       doDropboxLogin();
       return;
+    } else {
+      localToken.set(accessToken);
     }
     
     // Render the cached text
-    render(localStorage.getItem('lastTextContents'));
+    render(localText.get());
     dbx.filesListFolder({path: ''})
       .then(resp => gotFiles(resp.entries))
       .catch(console.warn);
@@ -78,11 +85,13 @@
   }
 
   function render(text) {
+    if (text == null) return;
+    
     // noop if text already matches
     if (text === lastTextContents) return console.log('skipping render, text already matches');
 
     lastTextContents = text;
-    localStorage.setItem('lastTextContents', lastTextContents);
+    localText.set(lastTextContents);
 
     $text.innerText = text;
     highlightAndScrollTo(SCROLL_TO_REGEX);
@@ -101,6 +110,7 @@
     const $match = kids
       .filter(n => n.wholeText)
       .find(n => n.wholeText.search(regex) >= 0);
+    if ($match == null) return;
 
     // Select the entire node
     const range = document.createRange();
