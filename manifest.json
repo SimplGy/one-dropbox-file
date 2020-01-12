@@ -5,12 +5,12 @@
   "scope": "/one-dropbox-file/",
   "icons": [
     {
-      "src": "/gfx/one-file-192.png",
+      "src": "gfx/one-file-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/gfx/one-file-512.png",
+      "src": "gfx/one-file-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
