@@ -14,6 +14,16 @@ It's all gloriously static, so just:
 
     serve .
 
+For ssl (which you'll need to test a mobile device off localhost), first make a key:
+
+    openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
+
+Then run with this, which looks for those default key and cert names:
+
+    http-server -S .
+
+This hosts at https://192.168.0.11:8080/, which is whitelisted by dropbox for this app, so you can test on a mobile or other device on your local network.
+
 ## Deploying
 
 Github pages. Push to deploy.
@@ -25,6 +35,7 @@ Github pages. Push to deploy.
 - [x] scroll today's date `YYYY MM-DD`
 - [x] cache the text file and lazy invalidate
 
+- [ ] Fix scrolling/selection in safari and mobile chrome
 - [ ] lightweight mobile support (eg: manifest and icon)
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 
