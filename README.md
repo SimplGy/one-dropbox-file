@@ -7,6 +7,7 @@
 * Dropbox Auth config for this app -- https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
 * Dropbox API Docs -- http://dropbox.github.io/dropbox-sdk-js/global.html
 * Web app manifest Info -- https://developers.google.com/web/fundamentals/web-app-manifest
+* PWAs on iOS -- https://superpwa.com/doc/test-pwa-ios-devices/
 
 ## Developing
 
@@ -39,6 +40,7 @@ Github pages. Push to deploy.
   - 
 - [ ] lightweight mobile support (eg: manifest and icon)
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
+- [ ] Service Worker registered with a fetch event handler
 
 * option for pre-wrap, nowrap
 * save last scroll position instead of always scrolling to today's `YYYY MM-DD`
