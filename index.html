@@ -14,13 +14,19 @@
       margin: 0;
       padding: 0;
     }
-    body {
-      background: #eee;
-    }
     pre {
-      font-size: 0.9rem;
+      font-family: FakeFontName, monospace; /* one of the world's greatest "wat"s. Read all about it. */
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+    }
+    pre p {
+      margin: 0;
+      padding: 0;
       padding-left: 3px;
-      background: white;
+    }
+    pre .highlight {
+      background: rgb(231, 247, 210);
+      font-weight: 500;
     }
     .btnLogin {
       position: absolute;
@@ -44,7 +50,8 @@
 </head>
 <body>
 
-  <pre id="TextDisplay"></pre>
+  <pre id="TextDisplay">
+  </pre>
 
   <script>
     window.addEventListener('load', OneFile.App.main);

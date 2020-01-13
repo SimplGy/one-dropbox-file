@@ -106,7 +106,13 @@
     lastTextContents = text;
     localText.set(lastTextContents);
 
-    $text.innerText = text;
+    // $text.innerText = text; // if you set innerText, chrome adds <br>s but safari doesn't (wat)
+    // if you set textContent, no nodes are added so there's nothing to scrollTo
+    // Instead: Convert each line of text to a `p` tag
+    // for simple line management and browser scrollTo
+    // Convert empty strings to a single space because empty `p` tags collapse
+    const html = text.split('\n').map(s => `<p>${s || ' '}</p>`).join('');
+    $text.innerHTML = html;
     highlightAndScrollTo(SCROLL_TO_REGEX);
   }
 
@@ -121,28 +127,30 @@
     // Find the text node that contains this regex
     const kids = Array.from($text.childNodes);
     const $match = kids
-      .filter(n => n.wholeText)
-      .find(n => n.wholeText.search(regex) >= 0);
+      .find(n => n.textContent.search(regex) >= 0);
     if ($match == null) return;
 
-    // Select the entire node
-    const range = document.createRange();
-    range.setStart($match, 0);
-    range.setEnd($match, $match.wholeText.length);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
+    // DEPRECATED: Select the text
+    // const range = document.createRange();
+    // range.setStart($match, 0);
+    // range.setEnd($match, $match.wholeText.length);
+    // const selection = window.getSelection();
+    // selection.removeAllRanges();
+    // selection.addRange(range);
+
+    // "highlight" the entire matching element
+    $match.classList.add('highlight');
 
     // Scroll to that element (or as near to as possible)
     scrollTo($match);
   }
 
-  // This is annoying, but you can't scrollIntoView on a text node.
-  // So find the nearest element with this method and scroll to that:
   function scrollTo(node, {behavior = 'smooth'} = {}) {
     if (node == null) return;
-    if (node.scrollIntoView == null) return scrollTo(node.previousSibling);
-    node.scrollIntoView({behavior, block: 'center'});
+    setTimeout(() => {
+      console.log('scrollTo', node);
+      node.scrollIntoView({behavior, block: 'center'});
+    }, 200); // give safari time to render
   }
 
   // function dropboxErr(error) {

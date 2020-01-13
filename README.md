@@ -34,8 +34,9 @@ Github pages. Push to deploy.
 - [x] store token in localstorage?
 - [x] scroll today's date `YYYY MM-DD`
 - [x] cache the text file and lazy invalidate
-
-- [ ] Fix scrolling/selection in safari and mobile chrome
+- [x] Fix scrolling/selection in safari and mobile chrome
+  - odd: in safari, the contents of the `<pre>` is just a string. In Chrome, it's alternating HtmlNodes (`<br>`) and TextNodes. I use innerText to insert. Very strange.
+  - 
 - [ ] lightweight mobile support (eg: manifest and icon)
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 
