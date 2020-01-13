@@ -117,9 +117,18 @@
   }
 
   // () => "2020-01-12"
+  // locale specific
   function getTodayAsText() {
-    const d = new Date();
-    return d.toISOString().split('T')[0];
+    const date = new Date();
+    const YYYY = date.getFullYear();
+    // Get months and days. Add leading zeros.
+    const M = withLeadingZero(date.getMonth() + 1); // js is 0 indexed on months. locale month.
+    const D = withLeadingZero(date.getDate()); // according to locale time
+    return `${YYYY}-${M}-${D}`;
+  }
+
+  function withLeadingZero(n) {
+    return String(n).padStart(2, '0');
   }
 
   function highlightAndScrollTo(regex) {
@@ -206,6 +215,7 @@
   window.OneFile.App = {
     main,
     dbx: () => dbx,
+    getTodayAsText,
   }
 
 })();

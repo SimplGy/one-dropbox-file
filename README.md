@@ -7,7 +7,7 @@
 * Dropbox Auth config for this app -- https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
 * Dropbox API Docs -- http://dropbox.github.io/dropbox-sdk-js/global.html
 * Web app manifest Info -- https://developers.google.com/web/fundamentals/web-app-manifest
-* PWAs on iOS -- https://superpwa.com/doc/test-pwa-ios-devices/
+* PWAs on iOS -- https://www.netguru.com/codestories/few-tips-that-will-make-your-pwa-on-ios-feel-like-native
 
 ## Developing
 
@@ -36,9 +36,10 @@ Github pages. Push to deploy.
 - [x] scroll today's date `YYYY MM-DD`
 - [x] cache the text file and lazy invalidate
 - [x] Fix scrolling/selection in safari and mobile chrome
-  - odd: in safari, the contents of the `<pre>` is just a string. In Chrome, it's alternating HtmlNodes (`<br>`) and TextNodes. I use innerText to insert. Very strange.
-  - 
-- [ ] lightweight mobile support (eg: manifest and icon)
+  - odd: in safari, the contents of the `<pre>` is just a string. In Chrome, it's alternating HtmlNodes (`<br>`) and TextNodes. I use innerText to insert, and this seems to be the root cause.
+- [x] lightweight mobile support (eg: manifest and icon)
+- [x] account for timezone when highlighting today
+
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 - [ ] Service Worker registered with a fetch event handler
 
