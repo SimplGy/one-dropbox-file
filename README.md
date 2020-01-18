@@ -25,6 +25,10 @@ Then run with this, which looks for those default key and cert names:
 
 This hosts at https://192.168.0.11:8080/, which is whitelisted by dropbox for this app, so you can test on a mobile or other device on your local network.
 
+Run `webhint` linting (only works on non secure dev mode)
+
+    npm run webhint ./.hintrc
+
 ## Deploying
 
 Github pages. Push to deploy.
@@ -39,13 +43,12 @@ Github pages. Push to deploy.
   - odd: in safari, the contents of the `<pre>` is just a string. In Chrome, it's alternating HtmlNodes (`<br>`) and TextNodes. I use innerText to insert, and this seems to be the root cause.
 - [x] lightweight mobile support (eg: manifest and icon)
 - [x] account for timezone when highlighting today
-
-- [ ] handle auth error cases
-  - [.] malformed token -- { error: String }
-  - [ ] invalid token -- filesListFolder { error: { } }`error.error['.tag']` -> `invalid_access_token`
+- [x] handle auth error cases
+  - [x] malformed token -- { error: String }
+  - [x] invalid token -- filesListFolder { error: { } }`error.error['.tag']` -> `invalid_access_token`
   - [x] missing token -- shows login. good.
-  - [ ] expired token
 
+- [ ] get apple-touch-icon to work -- https://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 - [ ] Service Worker registered with a fetch event handler
 - [ ] basic syntax highlighting?
