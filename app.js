@@ -130,7 +130,7 @@
   }
 
   function gotFiles(entries = []) {
-    MsgBar.show(`gotFiles: ${entries.length}`, entries);
+    console.log(`gotFiles: ${entries.length}`, entries);
     const textFiles = entries.filter(f => f.name.endsWith('.md') || f.name.endsWith('.txt'))
     const file = textFiles[0]
 
