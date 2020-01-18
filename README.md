@@ -40,7 +40,11 @@ Github pages. Push to deploy.
 - [x] lightweight mobile support (eg: manifest and icon)
 - [x] account for timezone when highlighting today
 
-
+- [ ] handle auth error cases
+  - [.] malformed token -- { error: String }
+  - [ ] invalid token -- filesListFolder { error: { } }`error.error['.tag']` -> `invalid_access_token`
+  - [x] missing token -- shows login. good.
+  - [ ] expired token
 
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 - [ ] Service Worker registered with a fetch event handler

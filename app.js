@@ -5,6 +5,7 @@
   const ls = (key) => ({
     get: () => localStorage.getItem(key),
     set: (val) => localStorage.setItem(key, val),
+    remove: () => localStorage.removeItem(key),
   })
   const localToken = ls('dropboxAccessToken');
   const localText = ls('lastTextContents');
@@ -31,7 +32,6 @@
     // https://dropbox.github.io/dropbox-sdk-js/tutorial-Authentication.html
     // accessToken
     dbx = new Dropbox.Dropbox({ accessToken, fetch, clientId });
-    console.log({dbx});
     window.dbx = dbx; // for debugging
     
     if (accessToken == null) {
@@ -39,18 +39,70 @@
       return;
     } else {
       localToken.set(accessToken);
+      clearUrlParams();
     }
     
     // Render the cached text
     render(localText.get());
     dbx.filesListFolder({path: ''})
       .then(resp => gotFiles(resp.entries))
-      .catch(console.warn);
+      .catch(gotErr('filesListFolder'));
   }
 
   // async function isUserLoggedIn() {
   //   return false;
   // }
+
+  const gotErr = (tag = '') => (err) => {
+    const errMsg = textFromError(err);
+    const errTag = tagFromError(err);
+    const statusCode = statusFromError(err);
+    const msg = `${tag} ${errMsg}`;
+    MsgBar.show(msg, {type: 'error', data: err});
+
+
+    if (errTag === 'invalid_access_token') {
+      resetAuth();
+      return;
+    }
+    if (errMsg.includes("access token is malformed")) {
+      resetAuth();
+      return;
+    }
+
+    // User token expired? Or another permission issue.
+    if (statusCode == 401) { // coerce string<>number on purpose
+      resetAuth();
+      return;
+    }
+
+    // TODO:
+    //     switch (error.status) {
+    //         case 507: // The user is over their Dropbox quota.
+    //         case 503: // Too many API requests. Tell the user to try again later.
+    //         case 400:  // Bad input parameter
+    //         case 403:  // Bad OAuth request.
+  }
+
+  const statusFromError = ({response} = {}) => (response || {}).status;
+  
+  const textFromError = (err = {}) => {
+    if (typeof err === 'string') return err;
+    const { error = {} } = err;
+    if (typeof error === 'string') return error;
+    return error.error_summary
+  }
+
+  const tagFromError = ({error} = {}) => {
+    if (error == null) return;
+    if (error.error == null) return;
+    return error.error['.tag']; // a dropbox concept
+  };
+
+  function resetAuth() {
+    localToken.remove();
+    requireDropboxLogin();
+  }
 
   function requireDropboxLogin() {
     const {origin, pathname} = window.location;
@@ -73,14 +125,18 @@
     return kvp;
   }
 
+  function clearUrlParams() {
+    history.replaceState({}, document.title, '.');  // `.` to keep url
+  }
+
   function gotFiles(entries = []) {
-    console.log('gotFiles', entries)
+    MsgBar.show(`gotFiles: ${entries.length}`, entries);
     const textFiles = entries.filter(f => f.name.endsWith('.md') || f.name.endsWith('.txt'))
     const file = textFiles[0]
 
     dbx.filesDownload({path: file.path_lower})
       .then(gotOneFile)
-      .catch(console.warn);
+      .catch(gotErr('filesDownload'));
   }
 
   // We got a downloaded file with blob from Dropbox, so use it
@@ -101,7 +157,7 @@
     if (text == null) return;
 
     // noop if text already matches
-    if (text === lastTextContents) return console.log('skipping render, text already matches');
+    if (text === lastTextContents) return; //console.log('skipping render, text already matches');
 
     lastTextContents = text;
     localText.set(lastTextContents);
@@ -157,62 +213,13 @@
   function scrollTo(node, {behavior = 'smooth'} = {}) {
     if (node == null) return;
     setTimeout(() => {
-      console.log('scrollTo', node);
+      // MsgBar.show(`scrollTo <${node.tagName}>`);
       node.scrollIntoView({behavior, block: 'center'});
     }, 200); // give safari time to render
   }
 
-  // function dropboxErr(error) {
-  //   console.log(error);
-  //     switch (error.status) {
-  //         case 401:
-  //             // If you're using dropbox.js, the only cause behind this error is that
-  //             // the user token expired.
-  //             // Get the user through the authentication flow again.
-  //             console.log('dropboxErr 401')
-  //             // this.showMessage('Looks like your session expired. No worries, you can keep playing by connecting to Dropbox again.')
-  //             break;
-  //         case 404:
-  //             // The file or folder you tried to access is not in the user's Dropbox.
-  //             // Handling this error is specific to your application.
-  //             //this.dropbox.writeFile(_fileName, _initialContent, function(err, stat){
-  //             //    if (err) { this.dropboxErr.call(this, err); return }
-  //             //    console.log('Created a new todo file successfully')
-  //             //})
-  //             console.log('dropboxErr 404')
-  //             break;
-  //         case 507:
-  //             console.log('dropboxErr 507')
-  //             // The user is over their Dropbox quota.
-  //             // Tell them their Dropbox is full. Refreshing the page won't help.
-  //             // this.showMessage('Your Dropbox quota is full. Bummer.', null, 'error')
-  //             break;
-  //         case 503:
-  //             console.log('dropboxErr 503')
-  //             // Too many API requests. Tell the user to try again later.
-  //             // Long-term, optimize your code to use fewer API calls.
-  //             // this.showMessage('Too Many API requests. Try again later, please.', null, 'warn')
-  //             break;
-
-  //         case 400:  // Bad input parameter
-  //         case 403:  // Bad OAuth request.
-  //             console.log('dropboxErr 403')
-  //             // this.showMessage('A Dropbox connection lets us save things for you. Please allow us to link to Dropbox.', 'error')
-  //             break;
-  //         case 405:  // Request method not expected
-  //             break;
-  //         default:
-  //         // Caused by a bug in dropbox.js, in your application, or in Dropbox.
-  //         // Tell the user an error occurred, ask them to refresh the page.
-  //     }
-  // }
-
-
-
-
   // Publicize
-  window.OneFile = window.OneFile || {}
-  window.OneFile.App = {
+  window.App = {
     main,
     dbx: () => dbx,
     getTodayAsText,

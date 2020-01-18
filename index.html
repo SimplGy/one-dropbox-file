@@ -13,48 +13,14 @@
   <link href="gfx/one-file-180.png" sizes="1242x2208" rel="apple-touch-startup-image" />
   <link href="gfx/one-file-180.png" sizes="750x1334" rel="apple-touch-startup-image" />
   <link href="gfx/one-file-180.png" sizes="640x1136" rel="apple-touch-startup-image" />
+  
+  <link href="app.css" rel="stylesheet">
+  <link href="msg-bar.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js"></script>
   
-  <script src="app.js"></script>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-    pre {
-      font-family: FakeFontName, monospace; /* one of the world's greatest "wat"s. Read all about it. */
-      font-size: 0.8rem;
-      line-height: 1.2rem;
-    }
-    pre p {
-      margin: 0;
-      padding: 0;
-      padding-left: 3px;
-    }
-    pre .highlight {
-      background: rgb(231, 247, 210);
-      font-weight: 500;
-    }
-    .btnLogin {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: inline-block;
-      padding: 20px;
-      background: #333;
-      color: white;
-      font-family: sans-serif;
-      text-decoration: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-    .btnLogin:hover, .btnLogin:focus {
-      background: #111;
-      box-shadow: 0 0 0 5px white, 0 0 0 10px rgba(0,0,0,0.2);
-    }
-  </style>
+  <script src="msg-bar.js"></script> <!-- window.MsgBar -->
+  <script src="app.js"></script> <!-- window.App -->
 </head>
 <body>
 
@@ -62,7 +28,7 @@
   </pre>
 
   <script>
-    window.addEventListener('load', OneFile.App.main);
+    window.addEventListener('load', App.main);
   </script>
 
 </body>
