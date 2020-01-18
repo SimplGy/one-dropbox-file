@@ -6,10 +6,6 @@
   const className = 'msg-bar';
   const containerClassName = 'msg-bar-container';
   let container;
-
-  // shift messages off the front when rendering
-  // const q = [];
-  // let isShowing = false;
   
   function setup() {
     const el = document.createElement('aside');
@@ -38,37 +34,6 @@
     // Remove it later
     setTimeout(() => el.parentElement.removeChild(el), duration);
   }
-
-  // function tick() {
-  //   if (isShowing) return;
-  //   const msg = q.shift();
-
-  //   addBar(msg);
-  //   isShowing = true;
-
-  //   setTimeout(() => {
-  //     rmBars();
-  //     tick();
-  //   }, duration);
-  // }
-
-  // function rmBars() {
-  //   if (container == null) return;
-
-  //   while(container.firstChild) {
-  //     container.removeChild(container.firstChild);
-  //   }
-  //   isShowing = false;
-  // }
-
-  
-
-
-
-
-
-
-
 
   window.MsgBar = {
     show,
