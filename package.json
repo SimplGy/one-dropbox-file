@@ -4,9 +4,14 @@
   "description": "An app optimized for quick start and a one single use case: show you a dropbox file at the last place you scrolled to.",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webhint": "hint http://localhost:8080"
   },
   "author": "Eric Miller @simplgy",
   "license": "UNLICENSED",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@hint/configuration-web-recommended": "^8.0.2",
+    "hint": "^6.0.3"
+  }
 }

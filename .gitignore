@@ -1,3 +1,5 @@
 z orig/
 cert.pem
 key.pem
+hint-report/
+node_modules/
