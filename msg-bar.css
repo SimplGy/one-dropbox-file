@@ -1,0 +1,22 @@
+.msg-bar-container {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.msg-bar {
+  display: block;
+  background: rgba(217, 236, 255, 0.9);
+  margin-bottom: 1px;
+  padding: 5px;
+  font-size: 0.8rem;
+}
+
+.msg-bar.error {
+  background: rgba(255,200,200,0.8);
+}
+.msg-bar.error::before {
+  content: '🚨 ';
+}
