@@ -2,9 +2,6 @@
 
   // This is the id for the OneFile application, not a user
   const clientId = '0j861nb371f5ops'; // https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
-  
-  // UI Options
-  const renderedMarkdown = true; // turn .md text into html
 
   // LocalStorage Helpers
   const ls = (key) => ({
@@ -14,6 +11,8 @@
   })
   const localToken = ls('dropboxAccessToken');
   const localText = ls('lastTextContents');
+  const localRenderMarkdown = ls('render-markdown');
+  const localWrapLines = ls('pre-wrap');
 
   let dbx;
   let lastScrollPosition;
@@ -163,32 +162,34 @@
     fr.readAsText(file.fileBlob)
   }
 
-  function render(text) {
+  function render(text, {force} = {}) {
     if (text == null) return;
 
     // noop if text already matches
-    if (text === lastTextContents) return; //console.log('skipping render, text already matches');
+    if (!force && text === lastTextContents) return; //console.log('skipping render, text already matches');
 
     lastTextContents = text;
     localText.set(lastTextContents);
 
-    if (renderedMarkdown) {
-      $text.classList.add('markdownContent');
+    $text.classList.toggle('wrap', localWrapLines.get());
+    $text.classList.toggle('markdownContent', localRenderMarkdown.get());
+
+    if (localRenderMarkdown.get()) {
       $text.innerHTML = marked(text);
     } else {
-      
       // $text.innerText = text; // if you set innerText, chrome adds <br>s but safari doesn't (wat)
       // if you set textContent, no nodes are added so there's nothing to scrollTo
       // Instead: Convert each line of text to a `p` tag
       // for simple line management and browser scrollTo
       // Convert empty strings to a single space because empty `p` tags collapse
       const html = text.split('\n').map(s => `<p>${s || ' '}</p>`).join('');
-      $text.classList.remove('markdownContent');
       $text.innerHTML = html;
     }
 
     highlightAndScrollTo(SCROLL_TO_REGEX);
   }
+
+  const renderAgain = () => render(localText.get(), {force: true});
 
   // () => "2020-01-12"
   // locale specific
@@ -240,6 +241,7 @@
     main,
     dbx: () => dbx,
     getTodayAsText,
+    renderAgain,
   }
 
 })();
