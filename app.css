@@ -55,7 +55,13 @@ h5 { font-size: 1.1em; }
 
 .textArea .highlight {
   background: var(--db-blue-lighterer);
-  box-shadow: inset 3px 0 0 var(--db-blue);
+  box-shadow: inset 3px 0 0 var(--db-blue),
+    /* grow the background color off to the right but without impating scrollable area */
+    300px 0 0 var(--db-blue-lighterer),
+    600px 0 0 var(--db-blue-lighterer),
+    900px 0 0 var(--db-blue-lighterer),
+    1200px 0 0 var(--db-blue-lighterer)
+    ;
   /* room for the highlight indication */
   padding-left: 5px;
   margin-left: -5px;
