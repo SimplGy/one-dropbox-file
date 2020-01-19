@@ -116,7 +116,7 @@
     const authUrl = dbx.getAuthenticationUrl(origin + pathname);
     const a = document.createElement('a');
     a.setAttribute('href', authUrl);
-    a.className = 'btnLogin';
+    a.className = 'btn btnLogin';
     a.innerText = 'Log In with Dropbox';
     $text.replaceWith(a);
   }
@@ -173,7 +173,7 @@
     localText.set(lastTextContents);
 
     if (renderedMarkdown) {
-      $text.className = 'markdownContent';
+      $text.classList.add('markdownContent');
       $text.innerHTML = marked(text);
     } else {
       
@@ -183,7 +183,7 @@
       // for simple line management and browser scrollTo
       // Convert empty strings to a single space because empty `p` tags collapse
       const html = text.split('\n').map(s => `<p>${s || ' '}</p>`).join('');
-      $text.className = '';
+      $text.classList.remove('markdownContent');
       $text.innerHTML = html;
     }
 
@@ -230,7 +230,7 @@
 
   function onDoubleTap() {
     console.log('onDoubleTap');
-
+    Settings.show();
   }
 
 
