@@ -47,10 +47,11 @@ Github pages. Push to deploy.
   - [x] malformed token -- { error: String }
   - [x] invalid token -- filesListFolder { error: { } }`error.error['.tag']` -> `invalid_access_token`
   - [x] missing token -- shows login. good.
+- [x] loading indication
 
 - [ ] get apple-touch-icon to work -- https://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
-- [ ] Service Worker registered with a fetch event handler
+- [ ] Service Worker registered with a fetch event handler (maybe needed to get localStorage to behave in iOS?)
 - [ ] basic syntax highlighting?
 - [ ] tappable phone numbers
 - [ ] tappable addresses (gmaps)

@@ -11,16 +11,19 @@
 
   <link href="app.css" rel="stylesheet">
   <link href="msg-bar.css" rel="stylesheet">
+  <link href="thinker/thinker.css" rel="stylesheet">
 
+  <!-- 3rd Party -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/4.0.30/Dropbox-sdk.min.js"></script>
   
+  <!-- 1st Party -->
+  <script src="thinker/thinker.js"></script> <!-- window.Thinker -->
   <script src="msg-bar.js"></script> <!-- window.MsgBar -->
   <script src="app.js"></script> <!-- window.App -->
 </head>
 <body>
 
-  <pre id="TextDisplay">
-  </pre>
+  <pre id="TextDisplay"></pre>
 
   <script>
     window.addEventListener('load', App.main);

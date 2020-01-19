@@ -44,16 +44,16 @@
     
     // Render the cached text
     render(localText.get());
+    
+    // Fetch the list of text files
+    Thinker.show();
     dbx.filesListFolder({path: ''})
       .then(resp => gotFiles(resp.entries))
       .catch(gotErr('filesListFolder'));
   }
 
-  // async function isUserLoggedIn() {
-  //   return false;
-  // }
-
   const gotErr = (tag = '') => (err) => {
+    Thinker.hide();
     const errMsg = textFromError(err);
     const errTag = tagFromError(err);
     const statusCode = statusFromError(err);
@@ -130,10 +130,12 @@
   }
 
   function gotFiles(entries = []) {
+    Thinker.hide();
     console.log(`gotFiles: ${entries.length}`, entries);
     const textFiles = entries.filter(f => f.name.endsWith('.md') || f.name.endsWith('.txt'))
     const file = textFiles[0]
 
+    Thinker.show();
     dbx.filesDownload({path: file.path_lower})
       .then(gotOneFile)
       .catch(gotErr('filesDownload'));
@@ -141,6 +143,7 @@
 
   // We got a downloaded file with blob from Dropbox, so use it
   async function gotOneFile(file = {}) {
+    Thinker.hide();
     window.file = file; // for debugging
 
     // const text = await file.fileBlob.text(); // Don't use: basically chrome only right now (2020)
