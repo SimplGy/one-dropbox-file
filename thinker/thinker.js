@@ -4,9 +4,8 @@
   let el;
 
   function show() {
-    console.log('Thinker.show()');
     if (el == null) {
-      el = setup(); // one
+      el = setup(); // one time
     }
     el.classList.add('show');
   }
