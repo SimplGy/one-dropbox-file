@@ -49,6 +49,7 @@ Github pages. Push to deploy.
   - [x] missing token -- shows login. good.
 - [x] loading indication
 
+- [ ] format md (option?)
 - [ ] get apple-touch-icon to work -- https://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 - [ ] Service Worker registered with a fetch event handler (maybe needed to get localStorage to behave in iOS?)
@@ -56,8 +57,6 @@ Github pages. Push to deploy.
 - [ ] tappable phone numbers
 - [ ] tappable addresses (gmaps)
 
-* option for pre-wrap, nowrap
-* save last scroll position instead of always scrolling to today's `YYYY MM-DD`
-* handle the empty state (eg: "add a text file like `Dropbox/OneTextFile/foo.txt` to see something here")
-* support error and other messages that show up but don't replace the text
-* detect "expired access token" and retrigger auth flow
+- [ ] option for pre-wrap, nowrap
+- [ ] handle the empty state (eg: "add a text file like `Dropbox/OneTextFile/foo.txt` to see something here")
+- [ ] support error and other messages that show up but don't replace the text

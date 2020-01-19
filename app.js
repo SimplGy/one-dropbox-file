@@ -2,6 +2,11 @@
 
   // This is the id for the OneFile application, not a user
   const clientId = '0j861nb371f5ops'; // https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
+  
+  // UI Options
+  const renderedMarkdown = true; // turn .md text into html
+
+  // LocalStorage Helpers
   const ls = (key) => ({
     get: () => localStorage.getItem(key),
     set: (val) => localStorage.setItem(key, val),
@@ -23,6 +28,8 @@
 
   function main() {
     $text = document.getElementById('TextDisplay');
+
+    document.addEventListener('doubleTap', onDoubleTap);
 
     // Do we have an access token in url or localstorage?  
     const params = parseLocation();
@@ -165,13 +172,21 @@
     lastTextContents = text;
     localText.set(lastTextContents);
 
-    // $text.innerText = text; // if you set innerText, chrome adds <br>s but safari doesn't (wat)
-    // if you set textContent, no nodes are added so there's nothing to scrollTo
-    // Instead: Convert each line of text to a `p` tag
-    // for simple line management and browser scrollTo
-    // Convert empty strings to a single space because empty `p` tags collapse
-    const html = text.split('\n').map(s => `<p>${s || ' '}</p>`).join('');
-    $text.innerHTML = html;
+    if (renderedMarkdown) {
+      $text.className = 'markdownContent';
+      $text.innerHTML = marked(text);
+    } else {
+      
+      // $text.innerText = text; // if you set innerText, chrome adds <br>s but safari doesn't (wat)
+      // if you set textContent, no nodes are added so there's nothing to scrollTo
+      // Instead: Convert each line of text to a `p` tag
+      // for simple line management and browser scrollTo
+      // Convert empty strings to a single space because empty `p` tags collapse
+      const html = text.split('\n').map(s => `<p>${s || ' '}</p>`).join('');
+      $text.className = '';
+      $text.innerHTML = html;
+    }
+
     highlightAndScrollTo(SCROLL_TO_REGEX);
   }
 
@@ -198,14 +213,6 @@
       .find(n => n.textContent.search(regex) >= 0);
     if ($match == null) return;
 
-    // DEPRECATED: Select the text
-    // const range = document.createRange();
-    // range.setStart($match, 0);
-    // range.setEnd($match, $match.wholeText.length);
-    // const selection = window.getSelection();
-    // selection.removeAllRanges();
-    // selection.addRange(range);
-
     // "highlight" the entire matching element
     $match.classList.add('highlight');
 
@@ -220,6 +227,13 @@
       node.scrollIntoView({behavior, block: 'center'});
     }, 200); // give safari time to render
   }
+
+  function onDoubleTap() {
+    console.log('onDoubleTap');
+
+  }
+
+
 
   // Publicize
   window.App = {
