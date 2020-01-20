@@ -4,7 +4,7 @@
   const clientId = '0j861nb371f5ops'; // https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
 
   // LocalStorage Helpers
-  const ls = (key) => ({
+  const ls = key => ({
     get: () => localStorage.getItem(key),
     set: (val) => localStorage.setItem(key, val),
     remove: () => localStorage.removeItem(key),
@@ -14,6 +14,22 @@
   const localContentHash = ls('lastTextContentHash');
   const localRenderMarkdown = ls('render-markdown');
   const localWrapLines = ls('pre-wrap');
+
+  // Cookie Helpers
+  const cookie = key => ({
+    get: () => {
+      const all = document.cookie || ''; // mashup of all cookies on document
+      const kvp = all.split(';')
+        .map(s => s.trim())
+        .find(s => s.indexOf(key) === 0);
+      if (kvp == null) return undefined;
+      return kvp.split('=').pop();
+    },
+    set: (val) => {
+      document.cookie = `${key}=${val}`; // document.cookie automatically finds and updates the right cookie
+    },
+  });
+  const cookieToken = cookie('dropboxAccessToken');
 
   let dbx;
   let lastTextContents;
@@ -32,7 +48,7 @@
 
     // Do we have an access token in url or localstorage?  
     const params = parseLocation();
-    const accessToken = params.access_token || localToken.get();
+    const accessToken = params.access_token || localToken.get() || cookieToken.get();
     
     // From https://github.com/dropbox/dropbox-sdk-js
     // https://dropbox.github.io/dropbox-sdk-js/tutorial-Authentication.html
@@ -46,6 +62,7 @@
       return;
     } else {
       localToken.set(accessToken);
+      cookieToken.set(accessToken);
       clearUrlParams();
     }
     
@@ -108,6 +125,7 @@
 
   function resetAuth() {
     localToken.remove();
+    cookieToken.set('');
     requireDropboxLogin();
   }
 
