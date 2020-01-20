@@ -2,13 +2,6 @@
 
 > An app optimized for quick start and a one single use case: show you a dropbox file at the last place you scrolled to.
 
-## Reference
-
-* Dropbox Auth config for this app -- https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
-* Dropbox API Docs -- http://dropbox.github.io/dropbox-sdk-js/global.html
-* Web app manifest Info -- https://developers.google.com/web/fundamentals/web-app-manifest
-* PWAs on iOS -- https://www.netguru.com/codestories/few-tips-that-will-make-your-pwa-on-ios-feel-like-native
-
 ## Developing
 
 It's all gloriously static, so just:
@@ -17,21 +10,34 @@ It's all gloriously static, so just:
 
 For ssl (which you'll need to test a mobile device off localhost), first make a key:
 
-    openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
+    openssl req -newkey rsa:2048      -nodes -x509 -days 3650 -keyout key.pem -out cert.pem -config req.cnf -sha256
 
 Then run with this, which looks for those default key and cert names:
 
-    http-server -S .
+    http-server -S -c-1 .
 
 This hosts at https://192.168.0.11:8080/, which is whitelisted by dropbox for this app, so you can test on a mobile or other device on your local network.
 
 Run `webhint` linting (only works on non secure dev mode)
 
+    http-server .
     npm run webhint ./.hintrc
+    # or npm run webhint-prod ./.hintrc
+
+View webhint results: http://localhost:8080/hint-report/http-localhost-8080/
 
 ## Deploying
 
 Github pages. Push to deploy.
+
+## Reference
+
+* Dropbox Auth config for this app -- https://www.dropbox.com/developers/apps/info/0j861nb371f5ops
+* Dropbox API Docs -- http://dropbox.github.io/dropbox-sdk-js/global.html
+* Web app manifest Info -- https://developers.google.com/web/fundamentals/web-app-manifest
+* PWAs on iOS -- https://www.netguru.com/codestories/few-tips-that-will-make-your-pwa-on-ios-feel-like-native
+* PWAs on iOS 2 -- https://medium.com/@firt/progressive-web-apps-on-ios-are-here-d00430dee3a7
+* self signed cert baloney -- https://stackoverflow.com/questions/43665243/invalid-self-signed-ssl-cert-subject-alternative-name-missing
 
 ## TODO
 
