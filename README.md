@@ -50,8 +50,9 @@ Github pages. Push to deploy.
 - [x] loading indication
 - [x] format .md as html
 - [x] settings screen (double tap to see it)
+- [x] store the content hash and use it to save a network request
 
-- [ ] store the content hash and use it to save a network request
+- [ ] Abstract out the dropbox interface so it could be used in any web app
 - [ ] webhint or lint if this is a "valid" pwa according to iOS (webworker?)
 - [ ] get apple-touch-icon to work -- https://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing

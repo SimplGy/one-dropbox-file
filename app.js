@@ -11,11 +11,11 @@
   })
   const localToken = ls('dropboxAccessToken');
   const localText = ls('lastTextContents');
+  const localContentHash = ls('lastTextContentHash');
   const localRenderMarkdown = ls('render-markdown');
   const localWrapLines = ls('pre-wrap');
 
   let dbx;
-  let lastScrollPosition;
   let lastTextContents;
   let $text; // display area for text file
 
@@ -72,11 +72,10 @@
       resetAuth();
       return;
     }
-    if (errMsg.includes("access token is malformed")) {
+    if (errMsg && errMsg.includes("access token is malformed")) {
       resetAuth();
       return;
     }
-
     // User token expired? Or another permission issue.
     if (statusCode == 401) { // coerce string<>number on purpose
       resetAuth();
@@ -95,9 +94,10 @@
   
   const textFromError = (err = {}) => {
     if (typeof err === 'string') return err;
+    if (typeof err.message === 'string') return err.message; // normal js stack trace error
     const { error = {} } = err;
     if (typeof error === 'string') return error;
-    return error.error_summary
+    return error.message || error.error_summary // dropbox api error.
   }
 
   const tagFromError = ({error} = {}) => {
@@ -138,9 +138,14 @@
 
   function gotFiles(entries = []) {
     Thinker.hide();
-    console.log(`gotFiles: ${entries.length}`, entries);
-    const textFiles = entries.filter(f => f.name.endsWith('.md') || f.name.endsWith('.txt'))
-    const file = textFiles[0]
+    console.log(`gotFiles()`, entries);
+    const textFiles = entries.filter(f => f.name.endsWith('.md') || f.name.endsWith('.txt'));
+    const file = textFiles[0];
+
+    if (file.content_hash === localContentHash.get()) {
+      console.log('file.content_hash === localContentHash.get(), no need to fetch the file.');
+      return;
+    }
 
     Thinker.show();
     dbx.filesDownload({path: file.path_lower})
@@ -151,16 +156,23 @@
   // We got a downloaded file with blob from Dropbox, so use it
   async function gotOneFile(file = {}) {
     Thinker.hide();
-    window.file = file; // for debugging
+    
+    // const text = await blob.text(); // Don't use: fileBlob.text() is basically chrome only right now in 2020
+    const text = await stringFrom(file.fileBlob);
+    render(text);
+    lastTextContents = text;
+    localText.set(lastTextContents);
+    localContentHash.set(file.content_hash);
+  }
 
-    // const text = await file.fileBlob.text(); // Don't use: basically chrome only right now (2020)
-
-    const fr = new FileReader();
-    fr.addEventListener('load', () => {
-      const text = fr.result;
-      render(text);
+  async function stringFrom(blob) {
+    return new Promise((resolve, reject) => {
+      const fr = new FileReader();
+      fr.addEventListener('load', () => {
+        resolve(fr.result);
+      });
+      fr.readAsText(blob);
     });
-    fr.readAsText(file.fileBlob)
   }
 
   function render(text, {force} = {}) {
@@ -169,14 +181,14 @@
     // noop if text already matches
     if (!force && text === lastTextContents) return; //console.log('skipping render, text already matches');
 
-    lastTextContents = text;
-    localText.set(lastTextContents);
-
     $text.classList.toggle('wrap', localWrapLines.get());
     $text.classList.toggle('markdownContent', localRenderMarkdown.get());
 
+    // User Preference: Show as rendered html
     if (localRenderMarkdown.get()) {
       $text.innerHTML = marked(text);
+    
+    // User Preference: Show as plain text
     } else {
       // $text.innerText = text; // if you set innerText, chrome adds <br>s but safari doesn't (wat)
       // if you set textContent, no nodes are added so there's nothing to scrollTo
