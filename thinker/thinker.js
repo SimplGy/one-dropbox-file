@@ -1,3 +1,7 @@
+// Shows a little "spinner" thinking indication in the top right corner.
+// Usage:
+// Thinker.show();
+// Thinker.hide();
 (() => {
 
   const className = 'thinker';

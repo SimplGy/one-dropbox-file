@@ -1,3 +1,7 @@
+// Shows user-facing, temporary messages.
+// used for error or status updates.
+// usage:
+// MsgBar.show('hello there');
 (()=>{
 
   // config

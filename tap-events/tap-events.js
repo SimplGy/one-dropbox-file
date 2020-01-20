@@ -1,3 +1,7 @@
+// Sets up unusual event listeners
+// Usage:
+// TapEvents.observeDoubleTap();
+// document.addEventListener('doubleTap', console.log);
 (() => {
 
   const DOUBLE_TAP = 'doubleTap';
