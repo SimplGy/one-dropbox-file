@@ -34,9 +34,22 @@
       container = setup();
     }
     container.appendChild(el);
+    logShowEvent({msg, type});
 
     // Remove it later
     setTimeout(() => el.parentElement.removeChild(el), duration);
+  }
+
+  // Depends on gtag.js
+  // https://developers.google.com/analytics/devguides/collection/gtagjs/events
+  function logShowEvent({msg, type}) {
+    if (gtag == null) return;
+    gtag('event', 'MsgBar', {
+      event_category: 'show',
+      event_label: type,
+      value: msg,
+      non_interaction: true,
+    });
   }
 
   window.MsgBar = {

@@ -41,6 +41,7 @@
     window.dbx = dbx; // for debugging
     
     if (accessToken == null) {
+      MsgBar.show('No access token found');
       requireDropboxLogin();
       return;
     } else {

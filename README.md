@@ -51,6 +51,8 @@ Github pages. Push to deploy.
 - [x] format .md as html
 - [x] settings screen (double tap to see it)
 
+- [ ] store the content hash and use it to save a network request
+- [ ] webhint or lint if this is a "valid" pwa according to iOS (webworker?)
 - [ ] get apple-touch-icon to work -- https://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 - [ ] Service Worker registered with a fetch event handler (maybe needed to get localStorage to behave in iOS?)
