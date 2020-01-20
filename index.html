@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json">
   
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- iOS -->
   <link rel="apple-touch-icon" href="gfx/one-file-180.png">
+  <meta name="apple-mobile-web-app-title" content="One File">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
   <link href="app.css" rel="stylesheet">
   <link href="settings.css" rel="stylesheet">
@@ -34,7 +36,7 @@
   <script src="app.js"></script> <!-- window.App -->
   <script src="settings.js"></script> <!-- window.Settings -->
 </head>
-<body>
+<body ontouchstart="">
 
   <pre id="TextDisplay" class="textArea"></pre>
 

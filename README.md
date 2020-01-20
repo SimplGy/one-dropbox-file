@@ -37,7 +37,10 @@ Github pages. Push to deploy.
 * Web app manifest Info -- https://developers.google.com/web/fundamentals/web-app-manifest
 * PWAs on iOS -- https://www.netguru.com/codestories/few-tips-that-will-make-your-pwa-on-ios-feel-like-native
 * PWAs on iOS 2 -- https://medium.com/@firt/progressive-web-apps-on-ios-are-here-d00430dee3a7
+* PWAs -- https://medium.com/appscope/designing-native-like-progressive-web-apps-for-ios-1b3cdda1d0e8
 * self signed cert baloney -- https://stackoverflow.com/questions/43665243/invalid-self-signed-ssl-cert-subject-alternative-name-missing
+* Apple docs on web apps -- https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
+* twitter thread on meh pwa support -- https://twitter.com/searls/status/1051459860192202755?lang=en
 
 ## TODO
 
@@ -57,6 +60,12 @@ Github pages. Push to deploy.
 - [x] format .md as html
 - [x] settings screen (double tap to see it)
 - [x] store the content hash and use it to save a network request
+- [x] fix bug: double tap for settings on mobile
+
+- [ ] bug: ios deletes our app token too often
+  - [ ] try IndexDB ? https://www.npmjs.com/package/idb
+  - [ ] Try to follow all the web app rules in apple docs
+  - [ ] Find confirmation that deleting localstorage multiple times per day is WAI
 
 - [ ] Abstract out the dropbox interface so it could be used in any web app
 - [ ] webhint or lint if this is a "valid" pwa according to iOS (webworker?)
