@@ -8,11 +8,19 @@ ST = VA
 L = SomeCity
 O = MyCompany
 OU = MyDivision
-CN = www.company.com
+CN = 192.168.0.11:8080
+
+[ req_distinguished_name ]
+commonName = 192.168.0.11:8080
+
+[ req_ext ]
+subjectAltName = IP:192.168.0.11:8080
+
 [v3_req]
 keyUsage = critical, digitalSignature, keyAgreement
 extendedKeyUsage = serverAuth
 subjectAltName = @alt_names
+
 [alt_names]
 DNS.1 = https://192.168.0.11:8080
 DNS.2 = https://localhost:8080
