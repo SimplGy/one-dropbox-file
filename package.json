@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webhint": "hint http://localhost:8080"
+    "webhint": "hint http://localhost:8080",
+    "webhint-prod": "hint https://www.simple.gy/one-dropbox-file"
   },
   "author": "Eric Miller @simplgy",
   "license": "UNLICENSED",
