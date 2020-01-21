@@ -21,3 +21,17 @@
   left: 50%;  
   transform: translateX(-50%);
 }
+
+.settings header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.settings header img {
+  margin-right: -28px;
+  margin-bottom: -28px;
+}
+
+.settings input[type="checkbox"] {
+  margin-right: 5px;
+}

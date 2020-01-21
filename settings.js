@@ -58,7 +58,12 @@
     const el = document.createElement('div');
     el.className = 'settings';
     
-    el.innerHTML = `<h2>Settings</h2>`;
+    el.innerHTML = `
+    <header>
+      <img src="gfx/one-file-title-180.png" style="max-width: 120px;" title="One File" alt="One File App Logo"/>
+      <h2>Settings</h2>
+    </header>
+    `;
     settings
       .map(makeSettingCheckbox)
       .forEach(checkbox => el.appendChild(checkbox));

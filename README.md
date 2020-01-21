@@ -61,14 +61,11 @@ Github pages. Push to deploy.
 - [x] settings screen (double tap to see it)
 - [x] store the content hash and use it to save a network request
 - [x] fix bug: double tap for settings on mobile
+- [x] bug: ios deletes token on every restart
+  - root cause: I used safari "private mode" for developing to avoid caching issues. When I hit "add to home screen" the private mode behavior was sticky, resulting in always clearing all caches, including localstorage. oops.
 
-- [ ] bug: ios deletes our app token too often
-  - [ ] try IndexDB ? https://www.npmjs.com/package/idb
-  - [ ] Try to follow all the web app rules in apple docs
-  - [ ] Find confirmation that deleting localstorage multiple times per day is WAI
-
-- [ ] Abstract out the dropbox interface so it could be used in any web app
-- [ ] webhint or lint if this is a "valid" pwa according to iOS (webworker?)
+- [ ] Nice new app icon
+- [ ] Abstract out the dropbox interface (connect, error handling, file list, single file) so it could be used in any web app
 - [ ] get apple-touch-icon to work -- https://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 - [ ] Service Worker registered with a fetch event handler (maybe needed to get localStorage to behave in iOS?)
