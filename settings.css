@@ -3,17 +3,20 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 100%;
+  top: 0;
   bottom: 0;
-  height: 100%;
   box-sizing: border-box;
-  background: rgba(0,0,0,0.95);
-  transition: top 0.15s ease-out;
+  background: rgba(0,0,0,0.92);
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
   padding: 20px;
   color: white;
+  /* hide */
+  transform: translateY(100%);
+  opacity: 0;
 }
 .settings.show {
-  top: 0;
+  transform: translateY(0);
+  opacity: 1;
 }
 .settings .btn {
   position: absolute;
