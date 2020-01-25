@@ -12,8 +12,8 @@ html, body {
   font-family: sans-serif;
 }
 
-pre.textArea {
-  font-family: FakeFontName, monospace; /* one of the world's greatest "wat"s. Read all about it. */
+pre, code {
+  font-family: FakeFontName, monospace; /* one of the world's greatest "wat"s. Read all about it: https://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing/ */
 }
 
 .textArea {
@@ -34,36 +34,21 @@ pre.wrap {
   padding: 0;
 }
 
-/* Rendered Markdown display */
-h1, h2, h3, h4, h5 {
-  margin: 0;
-  padding: 0.2rem 0;
-}
-h1 { font-size: 1.5em; }
-h2 { font-size: 1.4em; }
-h3 { font-size: 1.3em; }
-h4 { font-size: 1.2em; }
-h5 { font-size: 1.1em; }
-.markdownContent {
-  /* white-space: normal; */
-}
-.markdownContent p {
-  /* white-space: pre; */
-}
-
 .textArea .highlight {
   background: var(--db-blue-lighterer);
+  color: black;
   box-shadow: inset 3px 0 0 var(--db-blue),
-    /* grow the background color off to the right but without impating scrollable area */
+    /* grow the light background color off to the right but without impating scrollable area */
     300px 0 0 var(--db-blue-lighterer),
     600px 0 0 var(--db-blue-lighterer),
     900px 0 0 var(--db-blue-lighterer),
-    1200px 0 0 var(--db-blue-lighterer)
-    ;
-  /* room for the highlight indication */
-  padding-left: 5px;
+    1200px 0 0 var(--db-blue-lighterer);
+  padding-left: 5px; /* room for the highlight indication */
   margin-left: -5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+
 .btn {
   display: inline-block;
   padding: 20px 10px;

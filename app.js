@@ -200,7 +200,7 @@
     if (!force && text === lastTextContents) return; //console.log('skipping render, text already matches');
 
     $text.classList.toggle('wrap', localWrapLines.get());
-    $text.classList.toggle('markdownContent', localRenderMarkdown.get());
+    $text.classList.toggle('md', localRenderMarkdown.get());
 
     // User Preference: Show as rendered html
     if (localRenderMarkdown.get()) {

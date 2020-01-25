@@ -1,0 +1,49 @@
+.md code {
+  background: #f3f2e8;
+  padding: 0 2px;
+  border-radius: 1px;
+  color: #1b1505;
+}
+
+.md a[href*="http"] {
+  /* Links are usually long, so let's make them smaller */
+  font-size: 90%;
+}
+.md a:visited {
+  /* let's make these less obvious */
+  color: hsl(271, 20%, 50%);
+}
+
+.md h1,
+.md h2,
+.md h3,
+.md h4,
+.md h5 {
+  margin: 0;
+  padding: 0.3rem 0;
+  /* because they're bold, they can be a little lighter */
+  color: #444;
+}
+.md h1 { font-size: 1.5em; }
+.md h2 { font-size: 1.4em; }
+.md h3 { font-size: 1.3em; }
+.md h4 { font-size: 1.2em; }
+.md h5 { font-size: 1.1em; }
+
+/* If you allow all whitespace, there are many spaces between paragraphs */
+pre.md {
+  white-space: normal;
+}
+/* we do want to respect indenting and whitespace inside elements */
+pre.md * {
+  white-space: pre;
+}
+
+/* retina hairline for all: https://codepen.io/benknight/pen/Dwuqk */
+.md hr {
+  margin: 3em 0;
+  height: 1px;
+  border: 0;
+  background-image: linear-gradient(to bottom, #999 0%, #999 51%, transparent 51%);
+  background-size: 100% 1px;
+}
