@@ -60,8 +60,10 @@
     
     el.innerHTML = `
     <header>
-      <img src="gfx/one-file-title-180.png" style="max-width: 120px; height: 120px;" title="One File" alt="One File App Logo"/>
-      <h2>Settings</h2>
+      <figure class="wrapper">
+        <img src="gfx/one-file-title-180.png" title="One File" alt="One File App Logo"/>
+        <h2>Settings</h2>
+      </figure>
     </header>
     `;
     settings

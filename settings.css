@@ -6,9 +6,8 @@
   top: 0;
   bottom: 0;
   box-sizing: border-box;
-  background: rgba(0,0,0,0.92);
+  background: black;
   transition: transform 0.15s ease-out, opacity 0.15s ease-out;
-  padding: 20px;
   color: white;
   /* hide */
   transform: translateY(100%);
@@ -27,14 +26,51 @@
 
 .settings header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.settings p {
+  padding-left: 10px;
+  padding-right: 5px;
+  margin: 0; /* more room for the label to be tapable */
+}
+
+.settings label {
+  display: inline-block;
+  padding: 10px;
+}
+
+.settings label:active {
+  background: rgba(255,255,255,0.1);
 }
 
 .settings header img {
-  margin-right: -28px;
-  margin-bottom: -28px;
+  margin-right: -20px;
+  margin-bottom: -20px;
+  width: 80px;
+  height: 80px;
 }
 
 .settings input[type="checkbox"] {
   margin-right: 5px;
+}
+
+.settings header .wrapper {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: black; */
+  padding: 10px 0;
+  text-shadow: white;
+}
+
+.wrapper h2 {
+  text-shadow:
+    1px 1px black,
+    2px 2px black,
+    3px 3px black,
+    4px 4px black,
+    5px 5px black
+    ;
 }

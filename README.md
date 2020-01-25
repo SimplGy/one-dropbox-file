@@ -76,3 +76,4 @@ Github pages. Push to deploy.
 - [ ] option for pre-wrap, nowrap
 - [ ] handle the empty state (eg: "add a text file like `Dropbox/OneTextFile/foo.txt` to see something here")
 - [ ] support error and other messages that show up but don't replace the text
+- [ ] `OneFile`: press and hold for flyout options around your thumb -- table of contents, settings, search
