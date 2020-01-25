@@ -1,4 +1,6 @@
 :root {
+  --db-blue-darkerer: #002142;
+  --db-blue-darker: #003061;
   --db-blue-dark: #004f9e;
   --db-blue: #0070e0;
   --db-blue-light: #85c2ff;
@@ -36,7 +38,6 @@ pre.wrap {
 
 .textArea .highlight {
   background: var(--db-blue-lighterer);
-  color: black;
   box-shadow: inset 3px 0 0 var(--db-blue),
     /* grow the light background color off to the right but without impating scrollable area */
     300px 0 0 var(--db-blue-lighterer),
@@ -47,6 +48,7 @@ pre.wrap {
   margin-left: -5px;
   padding-top: 5px;
   padding-bottom: 5px;
+  opacity: 1;
 }
 
 .btn {
@@ -73,4 +75,27 @@ pre.wrap {
 }
 .btnLogin:hover, .btnLogin:focus {
   box-shadow: 0 0 0 5px white, 0 0 0 10px var(--db-blue-lighter);
+}
+
+a {
+  color: var(--db-blue-dark);
+}
+
+
+/* ------------------------------------- Dark Mode */
+.dark {
+  background: #111;
+  color: white;
+}
+.dark a {
+  color: var(--db-blue-light);
+}
+.dark .textArea .highlight {
+  background: var(--db-blue-darkerer);
+  box-shadow: inset 3px 0 0 var(--db-blue-dark),
+    /* grow the light background color off to the right but without impating scrollable area */
+    300px  0 0 var(--db-blue-darker),
+    600px  0 0 var(--db-blue-darker),
+    900px  0 0 var(--db-blue-darker),
+    1200px 0 0 var(--db-blue-darker);
 }

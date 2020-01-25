@@ -63,17 +63,18 @@ Github pages. Push to deploy.
 - [x] fix bug: double tap for settings on mobile
 - [x] bug: ios deletes token on every restart
   - root cause: I used safari "private mode" for developing to avoid caching issues. When I hit "add to home screen" the private mode behavior was sticky, resulting in always clearing all caches, including localstorage. oops.
+- [x] Nice new app icon
+- [x] dark mode
+- [x] word wrap option
 
-- [ ] Nice new app icon
+- [ ] improve app icon (more spacing)
 - [ ] Abstract out the dropbox interface (connect, error handling, file list, single file) so it could be used in any web app
-- [ ] get apple-touch-icon to work -- https://webhint.io/docs/user-guide/hints/hint-apple-touch-icons/
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
-- [ ] Service Worker registered with a fetch event handler (maybe needed to get localStorage to behave in iOS?)
 - [ ] basic syntax highlighting?
 - [ ] tappable phone numbers
 - [ ] tappable addresses (gmaps)
-
-- [ ] option for pre-wrap, nowrap
+- [ ] search filter (show only lines that match "foo", also include the nearest parent heading if within k lines)
+- [ ] font size option
 - [ ] handle the empty state (eg: "add a text file like `Dropbox/OneTextFile/foo.txt` to see something here")
 - [ ] support error and other messages that show up but don't replace the text
-- [ ] `OneFile`: press and hold for flyout options around your thumb -- table of contents, settings, search
+- [ ] press and hold for flyout options around your thumb -- table of contents, settings, search

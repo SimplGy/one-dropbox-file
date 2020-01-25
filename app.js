@@ -14,6 +14,7 @@
   const localContentHash = ls('lastTextContentHash');
   const localRenderMarkdown = ls('render-markdown');
   const localWrapLines = ls('pre-wrap');
+  const localDarkMode = ls('dark-mode');
 
   // Cookie Helpers
   const cookie = key => ({
@@ -199,6 +200,7 @@
     // noop if text already matches
     if (!force && text === lastTextContents) return; //console.log('skipping render, text already matches');
 
+    document.body.classList.toggle('dark', localDarkMode.get());
     $text.classList.toggle('wrap', localWrapLines.get());
     $text.classList.toggle('md', localRenderMarkdown.get());
 

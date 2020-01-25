@@ -1,8 +1,7 @@
 .md code {
-  background: #f3f2e8;
-  padding: 0 2px;
+  background: rgba(167, 152, 44, 0.15);
+  padding: 0 3px;
   border-radius: 1px;
-  color: #1b1505;
 }
 
 .md a[href*="http"] {
@@ -22,7 +21,7 @@
   margin: 0;
   padding: 0.3rem 0;
   /* because they're bold, they can be a little lighter */
-  color: #444;
+  opacity: 0.7;
 }
 .md h1 { font-size: 1.5em; }
 .md h2 { font-size: 1.4em; }
@@ -47,3 +46,5 @@ pre.md * {
   background-image: linear-gradient(to bottom, #999 0%, #999 51%, transparent 51%);
   background-size: 100% 1px;
 }
+
+

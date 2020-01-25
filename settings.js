@@ -28,6 +28,11 @@
       id: 'wrap-lines',
       ls: ls('pre-wrap'),
     },
+    {
+      title: 'Dark Mode',
+      id: 'dark-mode',
+      ls: ls('dark-mode'),
+    },
   ];
 
   const makeSettingCheckbox = ({id, title, ls} = {}) => {
