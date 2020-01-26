@@ -30,11 +30,11 @@
 .md h5 { font-size: 1.1em; }
 
 /* If you allow all whitespace, there are many spaces between paragraphs */
-pre.md {
+.md {
   white-space: normal;
 }
 /* we do want to respect indenting and whitespace inside elements */
-pre.md * {
+.md * {
   white-space: pre;
 }
 
