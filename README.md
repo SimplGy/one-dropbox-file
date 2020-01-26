@@ -66,12 +66,13 @@ Github pages. Push to deploy.
 - [x] Nice new app icon
 - [x] dark mode
 - [x] word wrap option
+- [x] tappable phone numbers (text and call)
 
 - [ ] improve app icon (more spacing)
 - [ ] Abstract out the dropbox interface (connect, error handling, file list, single file) so it could be used in any web app
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
 - [ ] basic syntax highlighting?
-- [ ] tappable phone numbers
+
 - [ ] tappable addresses (gmaps)
 - [ ] search filter (show only lines that match "foo", also include the nearest parent heading if within k lines)
 - [ ] font size option

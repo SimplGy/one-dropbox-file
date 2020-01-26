@@ -16,6 +16,40 @@
   const localWrapLines = ls('pre-wrap');
   const localDarkMode = ls('dark-mode');
 
+  // What may separate phone number parts?
+  // dash, space, dot, or nothing
+  const delim = '[-\\s\\.]?';
+
+  const countryCode = `(1${delim}|\\+1${delim}|)`;
+
+  // Optional parens, starts with 1-9, has 2 other digits
+  // matches: (850), 850
+  // not: 123
+  const areaCode = '\\(?[1-9]\\d{2}\\)?';
+
+  const phoneRegex = new RegExp(
+    countryCode +
+    areaCode +
+    delim +
+    '\\d{3}' +
+    delim +
+    '\\d{4}'
+    , 'g' // global
+  );
+
+  const decoratePhoneNumbers = (str) =>
+    str.replace(phoneRegex, (phoneStr) => {
+      // get only the phone number digits from the matching phone number string
+      const num = phoneStr.replace(new RegExp(delim, 'g'), '');
+      return `<a href="tel:${num}">${phoneStr}</a> (<a href="sms:${num}">text</a>)`
+    }); 
+
+  // Set up operations that decorate text/html
+  // run before converting md to html
+  const processText = [
+    decoratePhoneNumbers,
+  ];
+
   // Cookie Helpers
   const cookie = key => ({
     get: () => {
@@ -206,6 +240,7 @@
 
     // User Preference: Show as rendered html
     if (localRenderMarkdown.get()) {
+      processText.forEach(fn => text = fn(text));
       $text.innerHTML = marked(text);
     
     // User Preference: Show as plain text
@@ -215,8 +250,9 @@
       // Instead: Convert each line of text to a `p` tag
       // for simple line management and browser scrollTo
       // Convert empty strings to a single space because empty `p` tags collapse
-      const html = text.split('\n').map(s => `<p>${s || ' '}</p>`).join('');
-      $text.innerHTML = html;
+      let htmlStr = text.split('\n').map(s => `<p>${s || ' '}</p>`).join('');
+      processText.forEach(fn => htmlStr = fn(htmlStr));
+      $text.innerHTML = htmlStr;
     }
 
     highlightAndScrollTo(SCROLL_TO_REGEX);
