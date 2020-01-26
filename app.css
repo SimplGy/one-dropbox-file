@@ -23,6 +23,7 @@ html, body {
   line-height: 1.2rem;
   overflow: auto;
   padding-left: 5px;
+  white-space: pre;
 }
 
 .textArea.wrap {
@@ -96,10 +97,10 @@ a {
 }
 .dark .textArea .highlight {
   background: var(--db-blue-darkerer);
-  box-shadow: inset 3px 0 0 var(--db-blue-dark),
+  box-shadow: inset 3px 0 0 var(--db-blue),
     /* grow the light background color off to the right but without impating scrollable area */
-    300px  0 0 var(--db-blue-darker),
-    600px  0 0 var(--db-blue-darker),
-    900px  0 0 var(--db-blue-darker),
-    1200px 0 0 var(--db-blue-darker);
+    300px  0 0 var(--db-blue-darkerer),
+    600px  0 0 var(--db-blue-darkerer),
+    900px  0 0 var(--db-blue-darkerer),
+    1200px 0 0 var(--db-blue-darkerer);
 }
