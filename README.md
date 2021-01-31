@@ -68,6 +68,7 @@ Github pages. Push to deploy.
 - [x] word wrap option
 - [x] tappable phone numbers (text and call)
 
+- [ ] Fix URL and link in repo: www.simple.gy/one-dropbox-file is broken.
 - [ ] Support choosing which file (or make it more obvious how to do that from the Dropbox UI.
   eg: link to the one file location in dropbox
 - [ ] improve app icon (more spacing)
