@@ -20,12 +20,15 @@
   // dash, space, dot, or nothing
   const delim = '[-\\s\\.]?';
 
+  // Fully optional country code
+  // either "1 ", "+1 ", or nothing.
   const countryCode = `(1${delim}|\\+1${delim}|)`;
 
-  // Optional parens, starts with 1-9, has 2 other digits
+  // Optional parens, starts with 2-9, has 2 other digits
   // matches: (850), 850
   // not: 123
-  const areaCode = '\\(?[1-9]\\d{2}\\)?';
+  // https://en.wikipedia.org/wiki/North_American_Numbering_Plan
+  const areaCode = '\\(?[2-9]\\d{2}\\)?';
 
   const phoneRegex = new RegExp(
     countryCode +
