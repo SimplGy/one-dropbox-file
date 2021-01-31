@@ -42,7 +42,29 @@ Github pages. Push to deploy.
 * Apple docs on web apps -- https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
 * twitter thread on meh pwa support -- https://twitter.com/searls/status/1051459860192202755?lang=en
 
-## TODO
+## TODO (Up Next)
+
+- [ ] Fix URL and link in repo: www.simple.gy/one-dropbox-file is broken.
+- [ ] Support choosing which file (or make it more obvious how to do that from the Dropbox UI.
+  eg: link to the one file location in dropbox
+- [ ] handle the empty state (eg: "add a text file like `Dropbox/OneTextFile/foo.txt` to see something here")
+
+## Some Day
+
+- [ ] Abstract out the dropbox interface (connect, error handling, file list, single file) so it could be used in any web app
+- [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
+- [ ] search filter (show only lines that match "foo", also include the nearest parent heading if within k lines)
+- [ ] tappable addresses (gmaps)
+- [ ] support error and other messages that show up but don't replace the text
+- [ ] press and hold for flyout options around your thumb -- table of contents, settings, search
+
+## Needs Decision
+
+- [ ] improve app icon (more spacing)
+- [ ] basic syntax highlighting?
+- [ ] font size option
+
+## Done
 
 - [x] enable oauth flow
 - [x] store token in localstorage?
@@ -67,18 +89,3 @@ Github pages. Push to deploy.
 - [x] dark mode
 - [x] word wrap option
 - [x] tappable phone numbers (text and call)
-
-- [ ] Fix URL and link in repo: www.simple.gy/one-dropbox-file is broken.
-- [ ] Support choosing which file (or make it more obvious how to do that from the Dropbox UI.
-  eg: link to the one file location in dropbox
-- [ ] improve app icon (more spacing)
-- [ ] Abstract out the dropbox interface (connect, error handling, file list, single file) so it could be used in any web app
-- [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
-- [ ] basic syntax highlighting?
-
-- [ ] tappable addresses (gmaps)
-- [ ] search filter (show only lines that match "foo", also include the nearest parent heading if within k lines)
-- [ ] font size option
-- [ ] handle the empty state (eg: "add a text file like `Dropbox/OneTextFile/foo.txt` to see something here")
-- [ ] support error and other messages that show up but don't replace the text
-- [ ] press and hold for flyout options around your thumb -- table of contents, settings, search
