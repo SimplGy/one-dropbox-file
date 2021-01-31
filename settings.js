@@ -75,12 +75,19 @@
       .map(makeSettingCheckbox)
       .forEach(checkbox => el.appendChild(checkbox));
 
+    // Info message
+    const p = document.createElement('p');
+    p.className = 'muted';
+    p.innerText = `To change the file, use this location: Dropbox/Apps/OneTextFile`;
+    el.appendChild(p);
+
     const btn = document.createElement('a');
     btn.href = "javascript:void(0);";
     btn.className = 'btn';
     btn.innerText = "Close";
     btn.addEventListener('click', hide);
 
+    
     el.appendChild(btn);
     document.body.appendChild(el);
     return el;

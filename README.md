@@ -68,6 +68,8 @@ Github pages. Push to deploy.
 - [x] word wrap option
 - [x] tappable phone numbers (text and call)
 
+- [ ] Support choosing which file (or make it more obvious how to do that from the Dropbox UI.
+  eg: link to the one file location in dropbox
 - [ ] improve app icon (more spacing)
 - [ ] Abstract out the dropbox interface (connect, error handling, file list, single file) so it could be used in any web app
 - [ ] gracefully handle `http` -- right now, if you view the site on http, it appears to work but the oauth redirect fails, which is confusing
